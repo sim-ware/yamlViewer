@@ -1,20 +1,18 @@
 import React from 'react';
+import TextInput from '../TextInput/TextInput'
 
 
 export default class PageTwo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {url: 'www.scoop.com'};
-  }
-
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h1>YAML Viewer</h1>
-        <p>Viewing YAML: {this.state.url}</p>
+        <p>Viewing YAML of URL: {this.props.url}</p>
         <p>put ul, li here</p>
-        <p>view new YAML</p>
-      </div>
+        <form onSubmit={this.props.changePage}>
+          <TextInput value={"go back"} />
+        </form>
+      </React.Fragment>
     );
   }
 }
