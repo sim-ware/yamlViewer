@@ -1,5 +1,3 @@
-const fs = require('fs')
-const https = require('https')
 const yaml = require('js-yaml')
 
 
@@ -8,23 +6,16 @@ const formatURL = (url) => {
     + url.replace('https://github.com', '').replace('blob/', '')
 }
 
-const saveYamlToFile = async (rawURL) => {
-  const file = fs.createWriteStream('test.yaml')
-  const request = await https.get(rawURL, function(response) {
-    response.pipe(file)
-  });
-}
-
-const parseYamlToJson = () => {
+const parseYamlToJson = (yamlContent) => {
   let json = null
   try {
-    json = yaml.safeLoad(fs.readFileSync('test.yaml', 'utf8'))
-    console.log(json)
+    json = yaml.safeLoad(yamlContent)
+    return json
   } catch (e) {
-    console.log(e)
+    return e
   }
 }
 
+
 module.exports.formatURL = formatURL
-module.exports.saveYamlToFile = saveYamlToFile
 module.exports.parseYamlToJson = parseYamlToJson

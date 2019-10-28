@@ -1,37 +1,26 @@
 const helpers = require('./lib/helpers')
 const express = require('express')
 const request = require('request')
-const yaml = require('js-yaml')
-
-
+const cors = require('cors')
 const app = express()
-app.use(express.json())
 
-app.get("/view-yaml", async (req, res, next) => {
-  // // 1. Format URL to read from Raw
+
+app.use(express.json())
+app.use(cors())
+
+app.post("/view-yaml", (req, res, next) => {
   const { url } = req.body
   const rawURL = helpers.formatURL(url)
 
-  // // test
+  let json = null
   request.get(rawURL, function (error, response, body) {
+    if (error || response.statusCode != 200) { res.json(error) }
     if (!error && response.statusCode == 200) {
-      const json = yaml.safeLoad(body)
-      console.log('*result', json)
+      json = helpers.parseYamlToJson(body)
     }
-  });
-  //
+    res.json(json)
+  })
+})
 
-  // // 2. Save the YAML file
-  // await helpers.saveYamlToFile(rawURL)
-
-  // // 3. Parse that YAML file into JSON
-  // helpers.parseYamlToJson()
-
-  // 1. figure out why we can either download the YAML,
-  // // or parse it to JSON, but not both
-  // 2. delete YAML file when done
-
-  res.json({ requestBody: req.body })
-});
 
 module.exports = app
