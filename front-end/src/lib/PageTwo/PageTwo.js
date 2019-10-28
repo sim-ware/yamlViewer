@@ -1,9 +1,10 @@
 import React from 'react'
 import Button from '../Button/Button'
+import './PageTwo.css';
 
 
 const PrettyPrintJson = ({data}) => (
-  <div style={{ fontSize: 10, textAlign: 'left' }}>
+  <div className="PrettyPrintJson" style={{ textAlign: 'left'}}>
     <pre>
     { JSON.stringify(data, null, 2) }
     </pre>
@@ -14,6 +15,10 @@ export default class PageTwo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { json: null };
+  }
+
+  async UNSAFE_componentWillMount() {
+    await this.yamlUrlToJsonFetch()
   }
 
   async yamlUrlToJsonFetch() {
@@ -28,10 +33,6 @@ export default class PageTwo extends React.Component {
     this.setState({ json })
   }
 
-  async UNSAFE_componentWillMount() {
-    await this.yamlUrlToJsonFetch()
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -40,7 +41,6 @@ export default class PageTwo extends React.Component {
           <span style={{ display: 'inline' }}>Viewing YAML of URL: </span>
           <span style={{ display: 'inline', color: 'white' }}>{this.props.url}</span>
         </div>
-        <span>{"JSON"}</span>
         <PrettyPrintJson style={{ fontSize: 10 }} data={this.state.json} />
         <form onSubmit={this.props.changePage}>
           <Button value="go back" />
