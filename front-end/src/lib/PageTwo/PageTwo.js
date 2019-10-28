@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from '../TextInput/TextInput'
+import Button from '../Button/Button'
 
 
 export default class PageTwo extends React.Component {
@@ -10,7 +10,7 @@ export default class PageTwo extends React.Component {
         <p>Viewing YAML of URL: {this.props.url}</p>
         <p>put ul, li here</p>
         <form onSubmit={this.props.changePage}>
-          <TextInput value={"go back"} />
+          <Button value="go back" />
         </form>
       </React.Fragment>
     );

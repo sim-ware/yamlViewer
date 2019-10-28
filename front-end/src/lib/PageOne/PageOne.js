@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from '../TextInput/TextInput'
+import Button from '../Button/Button'
 
 
 export default class PageOne extends React.Component {
@@ -11,7 +11,7 @@ export default class PageOne extends React.Component {
         <form onSubmit={this.props.changePage}>
           <input style={{ width: 600 }} type="text" onChange={this.props.handleInputChange} />
           <br />
-          <TextInput value={"view"} />
+          <Button value="view" />
         </form>
       </React.Fragment>
     );

@@ -1,12 +1,12 @@
 import React from 'react';
-import './TextInput.css';
+import './Button.css';
 
 
-export default class TextInput extends React.Component {
+export default class Button extends React.Component {
   render() {
     return (
       <input
-        className="TextInput"
+        className="Button"
         type="submit"
         value={this.props.value}
       />
