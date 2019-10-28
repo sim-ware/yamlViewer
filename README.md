@@ -13,4 +13,5 @@ There are two repos in one here, that have to be run separately. `back-end` cont
  7. enter the `front-end` repo by entering `cd front-end`
  8. `npm install`
  9. `npm start`
- 10. visit
+ 10. visit http://localhost:3000/ in your browser
+ 11. enter a url! You can test it with: https://github.com/lightheadoc/tripleo/blob/master/net-config-noop.yaml
