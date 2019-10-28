@@ -7,7 +7,10 @@ export default class PageTwo extends React.Component {
     return (
       <React.Fragment>
         <h1>YAML Viewer</h1>
-        <p>Viewing YAML of URL: {this.props.url}</p>
+        <div style={{ float: 'left' }}>
+          <span style={{ display: 'inline' }}>Viewing YAML of URL: </span>
+          <span style={{ display: 'inline', color: 'white' }}>{this.props.url}</span>
+        </div>
         <p>put ul, li here</p>
         <form onSubmit={this.props.changePage}>
           <Button value="go back" />
